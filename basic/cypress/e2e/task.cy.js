@@ -28,4 +28,10 @@ describe('tasks management', () => {
 		cy.get('.backdrop').should('not.exist');
 		cy.get('.modal').should('not.exist');
 	});
+	it('should validate user input', () => {
+		cy.visit('http://localhost:5173/');
+		cy.contains('Add Task').click();
+		cy.get('[type="submit"]').click();
+		cy.get('.error-message').contains('Please provide values ');
+	});
 });
