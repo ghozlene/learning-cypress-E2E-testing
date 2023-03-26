@@ -34,4 +34,22 @@ describe('tasks management', () => {
 		cy.get('[type="submit"]').click();
 		cy.get('.error-message').contains('Please provide values ');
 	});
+
+	it('should filter task', () => {
+		cy.visit('http://localhost:5173/');
+		cy.contains('Add Task').click();
+		cy.get('#title').type('new task');
+		cy.get('#summary').type('some discription');
+		cy.get('#category').select('urgent');
+		cy.get('[type="submit"]').click();
+		cy.get('.backdrop').should('not.exist');
+		cy.get('.modal').should('not.exist');
+		cy.get('.task').should('have.length', 1);
+		cy.get('#filter').select('moderate');
+		cy.get('.task').should('have.length', 0);
+		cy.get('#filter').select('urgent');
+		cy.get('.task').should('have.length', 1);
+		cy.get('#filter').select('all');
+		cy.get('.task').should('have.length', 1);
+	});
 });
