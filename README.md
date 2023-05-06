@@ -2,6 +2,7 @@
 this repo is for learning End to End testing using Cypress 
 
 before you running cypress with this command : 
+
 npx cypress open 
 
 you just need to run the react app first using :
